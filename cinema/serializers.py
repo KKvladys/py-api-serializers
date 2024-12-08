@@ -43,10 +43,7 @@ class MovieListSerializer(MovieSerializer):
         read_only=True,
         slug_field="name"
     )
-    actors = serializers.SerializerMethodField()
-
-    def get_actors(self, obj: Movie) -> list[str]:
-        return [str(actor) for actor in obj.actors.all()]
+    actors = serializers.StringRelatedField(many=True)
 
 
 class MovieSessionSerializer(serializers.ModelSerializer):
