@@ -3,6 +3,12 @@ from rest_framework import serializers
 from .models import Actor, Genre, CinemaHall, Movie, MovieSession
 
 
+class GenreSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Genre
+        fields = ["id", "name"]
+
+
 class ActorSerializer(serializers.ModelSerializer):
     full_name = serializers.SerializerMethodField()
 
@@ -12,12 +18,6 @@ class ActorSerializer(serializers.ModelSerializer):
 
     def get_full_name(self, obj: Actor) -> str:
         return str(obj)
-
-
-class GenreSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Genre
-        fields = ["id", "name"]
 
 
 class CinemaHallSerializer(serializers.ModelSerializer):
